@@ -11,8 +11,8 @@ and content editable fields.
 
 To install and start the demo application:
 
-    git clone https://github.com/dmacfarlane/angular-mentions.git
-    cd angular-mentions
+    git clone https://github.com/Centeva/centeva-angular-mentions.git
+    cd centeva-angular-mentions
     npm install
     ng serve
 
@@ -20,12 +20,12 @@ To install and start the demo application:
 
 Add the package as a dependency to your project using:
 
-    npm install angular-mentions
+    npm install centeva-angular-mentions
 
 Add the module to your app.module imports:
 
 ```typescript
-import { MentionModule } from 'angular-mentions';
+import { MentionModule } from 'centeva-angular-mentions';
 ...
 
 @NgModule({

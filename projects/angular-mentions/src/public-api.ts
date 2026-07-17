@@ -1,5 +1,5 @@
 /*
- * Public API Surface of angular-mentions
+ * Public API Surface of centeva-angular-mentions
  */
 
 export * from './lib/mention-config';

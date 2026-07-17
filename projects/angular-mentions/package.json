@@ -1,5 +1,5 @@
 {
-  "name": "angular-mentions",
+  "name": "centeva-angular-mentions",
   "version": "1.5.0",
 
   "description": "Angular mentions for text fields.",
@@ -10,7 +10,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/dmacfarlane/angular-mentions.git"
+    "url": "https://github.com/Centeva/centeva-angular-mentions.git"
   },
   "author": "Dan MacFarlane",
   "license": "MIT",

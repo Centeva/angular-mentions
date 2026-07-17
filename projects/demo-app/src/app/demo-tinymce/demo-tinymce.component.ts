@@ -1,6 +1,6 @@
 import { Component, NgZone, Input, ViewChild } from '@angular/core';
 
-import { MentionDirective } from 'angular-mentions';
+import { MentionDirective } from 'centeva-angular-mentions';
 import { COMMON_NAMES } from '../common-names';
 
 /**
