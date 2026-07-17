@@ -1,8 +1,10 @@
 # Angular Mentions
 
+This project is a maintained fork of https://github.com/dmacfarlane/angular-mentions, published by Centeva as centeva-angular-mentions. For this fork, use https://github.com/Centeva/centeva-angular-mentions for issues and releases.
+
 Simple Angular mentions inspired by [Ment.io](https://github.com/jeff-collins/ment.io).
 
-[Click here for a Demo](http://dmacfarlane.github.io/angular-mentions/)
+[Click here for a Demo](https://github.com/Centeva/centeva-angular-mentions)
 
 This package provides auto-complete suggestions for @mentions in text input fields, text areas,
 and content editable fields.
