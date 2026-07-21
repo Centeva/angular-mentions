@@ -10,7 +10,9 @@ permissions:
 jobs:
   get_semver:
     name: Create semver
-    runs-on: [self-hosted, linux]
+    runs-on: centeva-strix
+    container:
+      image: ghcr.io/actions/actions-runner:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -34,7 +36,9 @@ jobs:
 
   build_and_publish:
     name: Build centeva-angular-mentions
-    runs-on: [self-hosted, linux]
+    runs-on: centeva-strix
+    container:
+      image: ghcr.io/actions/actions-runner:latest
     needs:
       - get_semver
     steps:
