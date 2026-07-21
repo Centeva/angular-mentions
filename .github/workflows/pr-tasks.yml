@@ -28,8 +28,17 @@ jobs:
       - name: Install dependencies
         run: npm ci --cache ~/.npm
 
+      - name: Lint
+        run: npx ng lint
+
       - name: Build library
         run: npx ng build angular-mentions
 
       - name: Build demo app
         run: npx ng build demo-app
+
+      - name: Test library
+        run: npx ng test angular-mentions --watch=false
+
+      - name: Test demo app
+        run: npx ng test demo-app --watch=false
