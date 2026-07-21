@@ -7,7 +7,7 @@ import { getCaretCoordinates } from './caret-coords';
 
 /**
  * Angular Mentions.
- * https://github.com/dmacfarlane/angular-mentions
+ * https://github.com/Centeva/centeva-angular-mentions
  *
  * Copyright (c) 2016 Dan MacFarlane
  */

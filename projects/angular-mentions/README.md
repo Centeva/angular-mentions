@@ -1,8 +1,10 @@
 # Angular Mentions
 
+This project is a maintained fork of https://github.com/dmacfarlane/angular-mentions, published by Centeva as centeva-angular-mentions. For this fork, use https://github.com/Centeva/centeva-angular-mentions for issues and releases.
+
 Simple Angular mentions inspired by [Ment.io](https://github.com/jeff-collins/ment.io).
 
-[Click here for a Demo](http://dmacfarlane.github.io/angular-mentions/)
+[Click here for a Demo](https://github.com/Centeva/centeva-angular-mentions)
 
 This package provides auto-complete suggestions for @mentions in text input fields, text areas,
 and content editable fields.
@@ -11,21 +13,29 @@ and content editable fields.
 
 To install and start the demo application:
 
-    git clone https://github.com/dmacfarlane/angular-mentions.git
-    cd angular-mentions
+    git clone https://github.com/Centeva/centeva-angular-mentions.git
+    cd centeva-angular-mentions
     npm install
     ng serve
+
+### Development Notes
+
+For library builds in this workspace, the active TypeScript config is:
+
+- `projects/angular-mentions/tsconfig.lib.json`
+
+The legacy file `projects/angular-mentions/src/lib/tsconfig.json` is no longer used.
 
 ### Usage
 
 Add the package as a dependency to your project using:
 
-    npm install angular-mentions
+    npm install centeva-angular-mentions
 
 Add the module to your app.module imports:
 
 ```typescript
-import { MentionModule } from 'angular-mentions';
+import { MentionModule } from 'centeva-angular-mentions';
 ...
 
 @NgModule({
