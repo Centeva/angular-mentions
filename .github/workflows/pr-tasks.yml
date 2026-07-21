@@ -5,7 +5,9 @@ on:
 jobs:
   frontend-checks:
     name: Build Angular workspace
-    runs-on: [self-hosted, linux]
+    runs-on: centeva-strix
+    container:
+      image: ghcr.io/actions/actions-runner:latest
     steps:
       - uses: actions/checkout@v4
 
