@@ -5,63 +5,50 @@ on:
       - "v[0-9]+.[0-9]+.[0-9]+"
       - "v[0-9]+.[0-9]+.[0-9]+-pre.[0-9]+"
 permissions:
-  id-token: write
+  id-token: write  # Required for OIDC
   contents: read
 jobs:
   get_semver:
     name: Create semver
-    runs-on: centeva-strix
-    container:
-      image: ghcr.io/actions/actions-runner:latest
+    runs-on: [self-hosted, linux]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Verify commit is on main for safety
-        run: git branch --remote --contains | grep origin/main
+      
+      - name: Verify commit is on master for safety
+        run: git branch --remote --contains | grep origin/master
 
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.9.7
         with:
           versionSpec: "5.x"
-
       - name: Determine Version
         id: gitversion
         uses: gittools/actions/gitversion/execute@v0.9.7
-
     outputs:
       semVer: ${{ steps.gitversion.outputs.semVer }}
-
   build_and_publish:
     name: Build centeva-angular-mentions
-    runs-on: centeva-strix
-    container:
-      image: ghcr.io/actions/actions-runner:latest
-    needs:
-      - get_semver
+    runs-on: [self-hosted, linux]
+    needs: get_semver
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 24.18.0
-
-      - name: Set package version
+      - name: Version
         run: |
           cd ./projects/angular-mentions
           npm version ${{ needs.get_semver.outputs.semVer }} --git-tag-version=false
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build library (production)
-        run: npx ng build angular-mentions --configuration production
-
+      - name: Build
+        run: |
+          npm ci
+          npx ng build angular-mentions --configuration production
       - name: Publish
         run: |
           cd ./dist/centeva-angular-mentions
-          npm publish --ignore-scripts --access public
+          # OIDC will automatically authenticate if no manual token config is set
+          npm publish --access public --no-git-tag-version --ignore-scripts
