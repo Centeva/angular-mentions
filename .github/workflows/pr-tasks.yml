@@ -4,19 +4,21 @@ on:
     types: [opened, reopened, synchronize, edited]
 jobs:
   frontend-checks:
-    name: Build Angular workspace
+    name: Test Angular workspace
     runs-on: centeva-strix
+    permissions:
+      contents: read
+      packages: write
     container:
       image: ghcr.io/actions/actions-runner:latest
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
+      
+      - uses: actions/setup-node@v1
         with:
           node-version: 24.x
-
-      - name: Cache npm
-        uses: actions/cache@v4
+      - name: Cache node modules
+        uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
         with:
@@ -26,21 +28,16 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-
-      - name: Install dependencies
-        run: npm ci --cache ~/.npm
-
+      - name: Setup frontend
+        run: |
+          npm ci --cache ~/.npm
       - name: Lint
         run: npx ng lint
-
       - name: Build library
         run: npx ng build angular-mentions
-
       - name: Build demo app
         run: npx ng build demo-app
-
-      - name: Test library
-        run: npx ng test angular-mentions --watch=false
-
-      - name: Test demo app
-        run: npx ng test demo-app --watch=false
+      - name: Test
+        run: |
+          npx ng test angular-mentions --watch=false
+          npx ng test demo-app --watch=false
