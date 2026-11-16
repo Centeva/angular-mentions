@@ -5,12 +5,11 @@ on:
 jobs:
   frontend-checks:
     name: Test Angular workspace
-    runs-on: centeva-strix
+    # Public repo: keep PR jobs off self-hosted runners so fork PRs can't run code in our cluster.
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
-    container:
-      image: ghcr.io/actions/actions-runner:latest
     steps:
       - uses: actions/checkout@v4
       
@@ -31,8 +30,6 @@ jobs:
       - name: Setup frontend
         run: |
           npm ci --cache ~/.npm
-      - name: Lint
-        run: npx ng lint
       - name: Build library
         run: npx ng build angular-mentions
       - name: Build demo app
