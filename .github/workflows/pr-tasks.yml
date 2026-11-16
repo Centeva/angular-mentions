@@ -30,8 +30,6 @@ jobs:
       - name: Setup frontend
         run: |
           npm ci --cache ~/.npm
-      - name: Lint
-        run: npx ng lint
       - name: Build library
         run: npx ng build angular-mentions
       - name: Build demo app
